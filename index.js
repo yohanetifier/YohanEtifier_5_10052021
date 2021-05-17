@@ -105,6 +105,16 @@ function productPage(){
     price: value.price * quantity + "€",
   }
 
+  /* Setup POPup */
+
+  const popup = () => {
+    if (window.confirm(`Vous avez ajouté au panier  ${selectionClient.quantity} ${selectionClient.name} avec une lentille de ${selectionClient.option} pour un total de ${selectionClient.price}. Voulez vous retouner sur la page d'accueil ou voir votre panier? OK pour voir votre panier, ANNULER pour retourner sur la page d'accueil `)) {
+      window.open("panier.html");
+  }else {
+    window.open("index.html");
+  }
+  }
+
   let shoppingCart = JSON.parse(localStorage.getItem("product"))
   /* Product in the Local Storage or not  */
   
@@ -112,12 +122,13 @@ function productPage(){
   if (shoppingCart){
     shoppingCart.push(selectionClient); 
     localStorage.setItem("product", JSON.stringify(shoppingCart))
+    popup()
   }else {
     shoppingCart = []; 
     shoppingCart.push(selectionClient); 
     localStorage.setItem("product", JSON.stringify(shoppingCart))
+    popup()
   }
-
   })
 
   }).catch(function(error){
@@ -125,57 +136,55 @@ function productPage(){
   })
 }
 
-/* localStorage.clear(); */
 
 
 /* -------------------------  Basket page------------------------------------------------ */
 
 function basket(){
+
   /* Create element of the DOM */
 
-  for (let i = 0; i < localStorage.length; i++){
-    let tbody = document.querySelector(".tbody")
-    let rank = document.createElement("tr"); 
-    let number = document.createElement("th")
-    let cellPrice = document.createElement("td")
-    let cellTitle = document.createElement("td"); 
-    let cellQuantity = document.createElement("td"); 
-    let cellOption = document.createElement("td"); 
-
-  /* Add Attribute */
-
-    number.setAttribute("scope", "row"); 
-    cellPrice.className = "price"
-    cellTitle.className = "title"
-    cellOption.className = "option"
-    cellQuantity.className = "quantity"
-
+  if (localStorage.product){
+    for (let i = 0; i < JSON.parse(localStorage.product).length; i++){
+      let list = JSON.parse(localStorage.getItem("product"))
+      let tbody = document.querySelector(".tbody")
+      let rank = document.createElement("tr"); 
+      let cellPrice = document.createElement("td")
+      let cellTitle = document.createElement("td"); 
+      let cellQuantity = document.createElement("td"); 
+      let cellOption = document.createElement("td"); 
+      let total = document.querySelector(".total")
+  
+  
+    /* Add Attribute */
+  
+      cellPrice.className = "price"
+      cellTitle.className = "title"
+      cellOption.className = "option"
+      cellQuantity.className = "quantity"
+  
     /* Insertion in the DOM */
+      
     tbody.appendChild(rank)
-    rank.appendChild(number)
     rank.appendChild(cellTitle)
     rank.appendChild(cellQuantity)
     rank.appendChild(cellOption)
     rank.appendChild(cellPrice)
-
-  let price = document.querySelector(".price"); 
-  let quantity = document.querySelector(".quantity"); 
-  let title = document.querySelector(".title")
-  let option = document.querySelector(".option")
-  title.textContent = localStorage.getItem("name")
-  price.textContent = localStorage.getItem("price")
-  quantity.textContent = localStorage.getItem("quantity")
-  option.textContent = localStorage.getItem("option") 
+  
+    /* Content of the node */
+  
+    cellTitle.textContent  = list[i].name; 
+    cellQuantity.textContent = list[i].quantity; 
+    cellPrice.textContent = list[i].price ; 
+    cellOption.textContent = list[i].option; 
+    total.textContent = list[i].price 
+  
+  } 
+    }
   }
- let price = document.querySelector(".price"); 
-  let quantity = document.querySelector(".quantity"); 
-  let title = document.querySelector(".title")
-  let option = document.querySelector(".option")
-  title.textContent = localStorage.getItem("name")
-  price.textContent = localStorage.getItem("price")
-  quantity.textContent = localStorage.getItem("quantity")
-  option.textContent = localStorage.getItem("option")
-} 
+      
+    
+
 
 
 

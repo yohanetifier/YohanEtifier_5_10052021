@@ -1,4 +1,3 @@
-let idProduct = ""
 
 function getProduct() {
   for (let i = 0; i < 5; i++) {
@@ -52,7 +51,7 @@ function getProduct() {
 
 /*---------------------------------- Product page---------------------------- */
 
-/* Get data */
+/* ---------Get data--------- */
 
 function productPage(){ 
   fetch(`http://localhost:3000/api/cameras/${location.search.substring(4)}`)
@@ -90,36 +89,36 @@ function productPage(){
 
   }
 
-  /* Add to basket */
+ 
+
+  /* --Add to basket-- */
 
   addToBasket.addEventListener("click", function(){
   let price = document.querySelector(".price")
   let quantity  = document.getElementById("quantity").value
   let option = document.querySelector(".form-select").options[document.querySelector(".form-select").selectedIndex].text
-
   
-  
-  for (let i = 0; i < 15; i++)
-  if (localStorage.name && localStorage.price && localStorage.quantity && localStorage.option){
-  localStorage.setItem("price"[i + 1], value.price * quantity + "€")
-  localStorage.setItem("name"[i + 1], value.name)
-  localStorage.setItem("option"[i + 1],option)
-  localStorage.setItem("quantity"[i + 1], quantity)
-  }else {
-  localStorage.setItem("price", value.price * quantity + "€")
-  localStorage.setItem("name", value.name)
-  localStorage.setItem("option",option)
-  localStorage.setItem("quantity", quantity)
+  let selectionClient = {
+    name: value.name, 
+    option: option, 
+    quantity: quantity, 
+    price: value.price * quantity + "€",
   }
+
+  let shoppingCart = JSON.parse(localStorage.getItem("product"))
+  /* Product in the Local Storage or not  */
   
-  console.log(localStorage.getItem("price"))
-  console.log(localStorage.getItem("name"))
-  console.log(localStorage.getItem("option"))
-  console.log(localStorage.getItem("quantity")) 
+  
+  if (shoppingCart){
+    shoppingCart.push(selectionClient); 
+    localStorage.setItem("product", JSON.stringify(shoppingCart))
+  }else {
+    shoppingCart = []; 
+    shoppingCart.push(selectionClient); 
+    localStorage.setItem("product", JSON.stringify(shoppingCart))
+  }
 
   })
-
-  
 
   }).catch(function(error){
     console.log("une erreur est survenue")
@@ -163,22 +162,20 @@ function basket(){
   let quantity = document.querySelector(".quantity"); 
   let title = document.querySelector(".title")
   let option = document.querySelector(".option")
-  rank.textContent += 1
   title.textContent = localStorage.getItem("name")
   price.textContent = localStorage.getItem("price")
   quantity.textContent = localStorage.getItem("quantity")
   option.textContent = localStorage.getItem("option") 
   }
-  /* let price = document.querySelector(".price"); 
+ let price = document.querySelector(".price"); 
   let quantity = document.querySelector(".quantity"); 
   let title = document.querySelector(".title")
   let option = document.querySelector(".option")
   title.textContent = localStorage.getItem("name")
   price.textContent = localStorage.getItem("price")
   quantity.textContent = localStorage.getItem("quantity")
-  option.textContent = localStorage.getItem("option") */
-  
-}
+  option.textContent = localStorage.getItem("option")
+} 
 
 
 

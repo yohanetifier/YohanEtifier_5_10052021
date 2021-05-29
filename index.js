@@ -29,7 +29,7 @@ function getProduct() {
         card.className = "card";
         cardBody.className = "card-body"
         img.setAttribute("src", value[i].imageUrl);
-        img.className = "card-img-top"
+        img.className = "card-img-top h-100"
         link.setAttribute("href", "productpage.html?id=" + value[i]._id);
         link.className = "btn btn-secondary";
 
@@ -172,6 +172,10 @@ function basket() {
   if (productsArray.length > 2) {
     /* Create the title of the table */
 
+    let infoPurchase = document.querySelector(".nopurchase");
+    infoPurchase.classList.remove("d-flex")
+    infoPurchase.classList.add("d-none")
+
     let thTitle = document.createElement("th");
     let thPrice = document.createElement("th");
     let thQuantity = document.createElement("th");
@@ -230,7 +234,7 @@ function basket() {
       cellOption.className = "option";
       cellQuantity.className = "quantity";
       deleteButton.className = "deletebutton";
-      button.className = "btn btn-primary w-75";
+      button.className = "btn btn-secondary w-75";
       trash.className = "bi bi-trash"
 
       /* Insertion in the DOM */
@@ -430,15 +434,7 @@ function basket() {
             total.textContent;
         });
     }
-  } else {
-    let infoPurchase = document.querySelector(".infopurchase");
-    infoPurchase.textContent = "Votre panier est vide";
-  }
-
-  if (!localStorage) {
-    let infoPurchase = document.querySelector(".infopurchase");
-    infoPurchase.textContent = "Votre panier est vide";
-  }
+  } 
 }
 
 /* ------------------Confirm Order ------------------- */

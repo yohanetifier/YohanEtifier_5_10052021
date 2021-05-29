@@ -4180,6 +4180,7 @@ textarea.form-control-lg {
 }
 
 .card {
+  height: 270.36px;
   position: relative;
   display: flex;
   flex-direction: column;

@@ -1,3 +1,13 @@
 @import "./_variable_overrides";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+.col-lg-4 {
+    flex: 0 0 auto;
+    width: 32%;
+  }
+
+  .card {
+      height: 270.36px; 
+
+  }
+

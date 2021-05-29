@@ -1340,7 +1340,7 @@ progress {
 
   .col-lg-4 {
     flex: 0 0 auto;
-    width: 32.9%;
+    width: 33.3333333333%;
   }
 
   .col-lg-5 {
@@ -4180,7 +4180,6 @@ textarea.form-control-lg {
 }
 
 .card {
-  height: 270.36px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -10725,6 +10724,14 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+.col-lg-4 {
+  flex: 0 0 auto;
+  width: 32%;
+}
+
+.card {
+  height: 270.36px;
 }
 
 /*# sourceMappingURL=style.css.map */

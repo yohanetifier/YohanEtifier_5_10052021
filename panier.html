@@ -10,6 +10,7 @@
   href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
   crossorigin="anonymous"> -->
+  
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -24,7 +25,7 @@
 
     <div class="container">
       <div class="row">
-        <nav class="col navbar navbar-expand-lg bg-light navbar-light">
+        <nav class="col navbar navbar-expand-lg bg-primary navbar-light">
           <a class="navbar-brand" href="index.html">
             <img src="./images/logo.png" height="50" />
           </a>
@@ -51,7 +52,7 @@
                     focusable="false"
                     data-prefix="fas"
                     data-icon="shopping-cart"
-                    class="svg-inline--fa fa-shopping-cart fa-w-18 text-primary"
+                    class="svg-inline--fa fa-shopping-cart fa-w-18 text-secondary"
                     role="img"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 576 512"
@@ -64,7 +65,7 @@
                     ></path>
                   </svg>
                   Panier
-                  <span class="counter"></span>
+                  <span class="badge bg-secondary"></span>
                 </a>
               </li>
             </ul>
@@ -84,7 +85,7 @@
       </table>
 
       <div class="nopurchase">
-        <h2 class="infopurchase text-center"></h2>
+        <h2 class="infopurchase text-center">Votre panier est vide</h2>
       </div>
 
       <!-- Order Form -->
@@ -129,10 +130,8 @@
         </div>
         <div class="col-12">
           <button id="submit" class="btn btn-primary">Valider la commande</button>
-          <!-- <input type="submit" value="valider la commande" id="submit"> -->
         </div>
       </form>
-      <!-- <a id="submit" class="btn btn-primary">Valider la commande</a> -->
       
       
       <script src="./index.js" type="text/javascript"></script>

@@ -24,7 +24,7 @@
 
     <div class="container">
       <div class="row">
-        <nav class="col navbar navbar-expand-lg bg-light navbar-light">
+        <nav class="col navbar navbar-expand-lg bg-primary navbar-light">
           <a class="navbar-brand" href="index.html">
             <img src="./images/logo.png" height="50" />
           </a>
@@ -51,7 +51,7 @@
                     focusable="false"
                     data-prefix="fas"
                     data-icon="shopping-cart"
-                    class="svg-inline--fa fa-shopping-cart fa-w-18 text-primary"
+                    class="svg-inline--fa fa-shopping-cart fa-w-18 text-secondary"
                     role="img"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 576 512"
@@ -64,7 +64,7 @@
                     ></path>
                   </svg>
                   Panier
-                  <span class="counter"></span>
+                  <span class="badge bg-secondary"></span>
                 </a>
               </li>
             </ul>
@@ -74,25 +74,25 @@
     
 
       <!-- Product page -->
-      <div class="card mb-3 ">
+      <div class="card mt-5 bg-primary">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="" alt="" class="card-img-top">
+            <img src="" alt="" class="card-img-top h-100">
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <select class="form-select" aria-label="Default select example">
-                <option selected>Choisissez vos options</option>
+                <option selected disabled>Choisissez vos options</option>
               </select>
               <form>
                 <label for="quantity">
-                    <input type="number" id="quantity" name="quantity" min="1" max="10">
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
                 </label>
               </form>
                 <p>Prix : <span class="price"></span></p>
-              <a class="btn btn-primary" href="panier.html">Ajouter au panier</a>
+              <a class="btn btn-secondary" href="panier.html">Ajouter au panier</a>
             </div>
           </div>
         </div>

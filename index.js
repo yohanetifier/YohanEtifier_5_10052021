@@ -9,6 +9,8 @@ function getProduct() {
         }
       })
       .then(function (value) {
+        /* Create element  */
+
         let col = document.createElement("div");
         let card = document.createElement("div");
         let cardBody = document.createElement("div");
@@ -16,24 +18,33 @@ function getProduct() {
         let title = document.createElement("h2");
         let price = document.createElement("span");
         let description = document.createElement("p");
-        let container = document.querySelector(".product");
         let link = document.createElement("a");
-        container.appendChild(col);
-        col.className = "col-12 col-md-6 mt-4";
-        col.appendChild(card);
-        card.className = "card";
-        card.appendChild(img);
-        img.setAttribute("src", value[i].imageUrl);
-        col.appendChild(cardBody);
-        title.className = "card-title";
-        title.textContent = value[i].name;
-        cardBody.appendChild(title);
+        let container = document.querySelector(".product");
+
+        /* Set attribute */
+
+        col.className = "col-12 col-lg-4 p-0 bg-primary shadow rounded";
         description.className = "card-text";
-        description.textContent = value[i].description;
-        cardBody.appendChild(description);
-        link.className = "btn btn-primary";
-        link.textContent = "pour plus de details";
+        title.className = "card-title";
+        card.className = "card";
+        cardBody.className = "card-body"
+        img.setAttribute("src", value[i].imageUrl);
+        img.className = "card-img-top"
         link.setAttribute("href", "productpage.html?id=" + value[i]._id);
+        link.className = "btn btn-secondary";
+
+        /* Set content */
+        title.textContent = value[i].name;
+        description.textContent = value[i].description;
+        link.textContent = "pour plus de details";
+
+        /* Insertion in the DOM */
+        container.appendChild(col);
+        col.appendChild(card);
+        card.appendChild(img);
+        col.appendChild(cardBody);
+        cardBody.appendChild(title);
+        cardBody.appendChild(description);
         cardBody.appendChild(link);
       })
       .catch(function (err) {
@@ -97,11 +108,12 @@ function productPage() {
           price: value.price * quantity + "€",
         };
 
-        let shoppingCart = JSON.parse(localStorage.getItem("product"));
+        let shoppingCart = localStorage.getItem("product");
 
         /* Product in the Local Storage or not  */
 
         if (shoppingCart) {
+          shoppingCart = JSON.parse(localStorage.getItem("product"));
           shoppingCart.push(selectionClient);
           localStorage.setItem("product", JSON.stringify(shoppingCart));
         } else {
@@ -126,11 +138,11 @@ let lastName = document.getElementById("inputLastName");
 let email = document.getElementById("inputEmail");
 let address = document.getElementById("inputAddress");
 let city = document.getElementById("inputCity");
-let storage = JSON.parse(localStorage.getItem("product"));
+/* let storage = JSON.parse(localStorage.getItem("product"));
 let validation = document.getElementById("validation");
 let inputs = document.getElementsByTagName("input");
 let error = document.getElementById("error");
-let form = document.getElementsByTagName("form");
+let form = document.getElementsByTagName("form"); */
 
 // feedback
 
@@ -141,62 +153,62 @@ let feedbackCity = document.querySelector(".feedbackcity");
 let feedbackAddress = document.querySelector(".feedbackaddress");
 
 /* ----------------------------------Add to the basket------------------------------------ */
-const productsArray = JSON.parse(localStorage.getItem("product"));
 
-function counter(){
-  let counter = document.querySelector(".counter")
-  if (productsArray.length > 0)
-  
-  counter.textContent = JSON.parse(localStorage.product).length; 
-}
-function basket() {
+let infoPurchase = document.querySelector(".infopurchase");
+let badgeCounter = document.querySelector(".badge");
 
+function counter() {
   const productsArray = JSON.parse(localStorage.getItem("product"));
+  if (localStorage.length > 0) {
+    badgeCounter.textContent = JSON.parse(localStorage.product).length;
+  }
+}
+
+function basket() {
+  const productsArray = localStorage.getItem("product");
   let header = document.querySelector(".header");
   let tfoot = document.querySelector(".footer");
 
-  if (productsArray.length > 0) {
-  /* Create the title of the table */
+  if (productsArray.length > 2) {
+    /* Create the title of the table */
 
-    let thTitle = document.createElement("th")
-    let thPrice = document.createElement("th")
-    let thQuantity = document.createElement("th")
-    let thOption = document.createElement("th")
-    let thDelete = document.createElement("th")
-    let thTotal = document.createElement("th")
-    let total = document.createElement("td")
+    let thTitle = document.createElement("th");
+    let thPrice = document.createElement("th");
+    let thQuantity = document.createElement("th");
+    let thOption = document.createElement("th");
+    let thDelete = document.createElement("th");
+    let thTotal = document.createElement("th");
+    let total = document.createElement("td");
 
-  /* Add attribute to the title of the table */
+    /* Add attribute to the title of the table */
 
-  thTitle.setAttribute("scope","col"); 
-  thPrice.setAttribute("scope","col");
-  thQuantity.setAttribute("scope","col");
-  thOption.setAttribute("scope","col");
-  thDelete.setAttribute("scope","col");
-  thTotal.setAttribute("colspan","3");
-  total.className = "total"
+    thTitle.setAttribute("scope", "col");
+    thPrice.setAttribute("scope", "col");
+    thQuantity.setAttribute("scope", "col");
+    thOption.setAttribute("scope", "col");
+    thDelete.setAttribute("scope", "col");
+    thTotal.setAttribute("colspan", "3");
+    total.className = "total";
 
-  /* Add textContent to the title */
+    /* Add textContent to the title */
 
-  thTitle.textContent = "Libellé"
-  thPrice.textContent = "Prix"
-  thQuantity.textContent = "Quantité"
-  thOption.textContent = "Option"
-  thDelete.textContent = "Supprimer"
-  thTotal.textContent = "Total"
-  
+    thTitle.textContent = "Libellé";
+    thPrice.textContent = "Prix";
+    thQuantity.textContent = "Quantité";
+    thOption.textContent = "Option";
+    thDelete.textContent = "Supprimer";
+    thTotal.textContent = "Total";
+    infoPurchase.textContent = "";
 
-  /* Insertion in the dom */
+    /* Insertion in the dom */
 
-  header.appendChild(thTitle)
-  header.appendChild(thQuantity)
-  header.appendChild(thOption)
-  header.appendChild(thPrice)
-  header.appendChild(thDelete)
-  tfoot.appendChild(thTotal)
-  tfoot.appendChild(total)
-
-
+    header.appendChild(thTitle);
+    header.appendChild(thQuantity);
+    header.appendChild(thOption);
+    header.appendChild(thPrice);
+    header.appendChild(thDelete);
+    tfoot.appendChild(thTotal);
+    tfoot.appendChild(total);
 
     for (let i = 0; i < JSON.parse(localStorage.product).length; i++) {
       let list = JSON.parse(localStorage.getItem("product"));
@@ -208,6 +220,8 @@ function basket() {
       let cellOption = document.createElement("td");
       let deleteButton = document.createElement("td");
       let button = document.createElement("button");
+      let trash = document.createElement("i")
+
 
       /* Add Attribute */
 
@@ -217,6 +231,7 @@ function basket() {
       cellQuantity.className = "quantity";
       deleteButton.className = "deletebutton";
       button.className = "btn btn-primary w-75";
+      trash.className = "bi bi-trash"
 
       /* Insertion in the DOM */
 
@@ -227,6 +242,8 @@ function basket() {
       rank.appendChild(cellPrice);
       rank.appendChild(deleteButton);
       deleteButton.appendChild(button);
+      button.appendChild(trash)
+      
 
       /* Content of the node */
 
@@ -235,6 +252,8 @@ function basket() {
       cellPrice.textContent = list[i].price;
       cellOption.textContent = list[i].option;
       button.textContent = "Supprimer l'article";
+      
+      
 
       /* Set up button */
 
@@ -247,26 +266,7 @@ function basket() {
         deleteRank.removeChild(rank);
         productsArray.splice(i, 1);
         localStorage.setItem("product", JSON.stringify(productsArray));
-        /* console.log("productsArray")
-          console.log(productsArray)
-          console.log("productsArray[i]")
-          console.log(productsArray[i]) */
-        /* console.log("test")
-          console.log(test) */
-        /*  console.log("productsArray")
-          console.log(productsArray) */
-        window.location.href = "panier.html";
-        /* console.log("productsArray[i]")
-          console.log(productsArray[i]) */
-
-        /* productsArray.splice(theProduct,i)
-          localStorage.setItem("product", JSON.stringify(productsArray))
-          console.log("theProduct")
-          console.log(theProduct)
-          console.log("productsArray")
-          console.log(productsArray)
-          console.log("productsInTheLocalStorage")
-          console.log(productsInTheLocalStorage) */
+        window.location.reload();
       });
     }
 
@@ -290,6 +290,7 @@ function basket() {
 
     submit.addEventListener("click", function () {
       /* Make a object with the infoclient */
+
       const infoClient = {
         firstName: firstName.value,
         lastName: lastName.value,
@@ -422,12 +423,21 @@ function basket() {
           }
         })
         .then((value) => {
-          window.location.href = "confirm.html?order=" + value.orderId;
+          window.location.href =
+            "confirm.html?order=" +
+            value.orderId +
+            "&total=" +
+            total.textContent;
         });
     }
-  }else {
-    let infoPurchase = document.querySelector(".infopurchase")
-    infoPurchase.textContent = "Votre panier est vide"
+  } else {
+    let infoPurchase = document.querySelector(".infopurchase");
+    infoPurchase.textContent = "Votre panier est vide";
+  }
+
+  if (!localStorage) {
+    let infoPurchase = document.querySelector(".infopurchase");
+    infoPurchase.textContent = "Votre panier est vide";
   }
 }
 
@@ -435,9 +445,12 @@ function basket() {
 
 function confirmOrder() {
   let confirm = document.querySelector(".confirm");
-  confirm.textContent = `Votre commande n° ${location.search.substring(
-    7
-  )} a bien été validé.\n Vous recevrez un mail de confirmation dans quelques instants`;
+  let params = new URLSearchParams(location.search);
+  confirm.textContent = `Votre commande n° ${params.get(
+    "order"
+  )} de ${params.get(
+    "total"
+  )} a bien été validée.\nVous recevrez un mail de confirmation dans quelques instants.\n Orinico vous remercie de votre commande.`;
   localStorage.clear();
 }
 

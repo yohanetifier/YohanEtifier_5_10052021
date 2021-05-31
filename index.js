@@ -511,6 +511,6 @@ function confirmOrder() {
     "email"
   )} dans quelques instants.\n Mr ${params
     .get("name")
-    .toUpperCase()},  Orinico vous remercie de votre commande.`;
+    .toUpperCase()},  Orinoco vous remercie de votre commande.`;
   localStorage.clear();
 }

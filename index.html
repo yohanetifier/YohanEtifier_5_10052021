@@ -16,7 +16,7 @@
       integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
       crossorigin="anonymous"
     />
-    <title>Orinico</title>
+    <title>Orinoco</title>
     
   </head>
   <body>
@@ -74,13 +74,13 @@
 
       <div class="row mt-4">
         <div class="col">
-          <input class="w-100" type="text" placeholder="Search" />
+          <input class="w-100" type="text" placeholder="Search" id="searchbar" />
         </div>
       </div>
 
       <!-- Product List -->
       <!-- <div class="container-fluid"> -->
-        <div class="row justify-content-start gap-3 mt-4 product">
+        <div class="row justify-content-start gap-3 mt-4 product" id="product-list">
       </div>
      </div>
     <!-- </div> -->
@@ -108,5 +108,15 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script>
+      $(document).ready(function(){
+       $("#searchbar").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $("#product-list .col-lg-4").filter(function() {
+             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+       });
+    });
+    </script>
   </body>
 </html>

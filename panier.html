@@ -27,14 +27,14 @@
       <div class="row">
         <nav class="col navbar navbar-expand-lg bg-primary navbar-light">
           <a class="navbar-brand" href="index.html">
-            <img src="./images/logo.png" height="50" />
+            <img src="./images/logo.png" height="50" alt="logo" />
           </a>
           <button
             class="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarContent"
-            aria-controls="navbarSupportedContent"
+            aria-controls="navbarContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
@@ -74,7 +74,7 @@
 
       <div class="row">
       <h2 class="text-center mt-4">Votre panier</h2>
-      <table class="table mt-5 bg-primary">
+      <table class="table mt-5 bg-primary border border-3 rounded shadow">
         <thead class="header text-center">
         </thead>
         <tbody class="tbody text-center">
@@ -104,56 +104,57 @@
                   </svg>
         <h2 class="infopurchase text-center">Votre panier Orinico est vide</h2>
       </div>
+      </div>
 
       <!-- Order Form -->
-      <div class="container mt-5 ">
+      <div class="container mt-5 mb-5 ">
       <h1 class="text-center mb-4">Commande</h1> 
-      <form class="row g-3 bg-primary" id="validation" method="POST">
+      <form class="row mt-3 g-3 bg-primary border border-3 shadow " id="validation" method="POST">
           <div class="col-md-6">
-            <label for="inputFirstName" class="form-label">Prénom:</label>
+            <label for="inputFirstName" class="form-label fw-bold ms-1">Prénom:</label>
             <input required type="text" class="form-control" placeholder="First name" aria-label="First name" id="inputFirstName">
             <div>
-              <p class="feedback"></p>
+              <p class="feedback ms-1"></p>
             </div>
           </div>
           <div class="col-md-6">
-            <label for="inputLastName" class="form-label">Nom:</label>
+            <label for="inputLastName" class="form-label fw-bold ms-1">Nom:</label>
             <input required type="text" class="form-control" placeholder="Last name" aria-label="Last name" id="inputLastName">
             <div>
-              <p class="feedbacklastname"></p>
+              <p class="feedbacklastname ms-1"></p>
             </div>
           </div>
         <div class="col-12">
-          <label for="inputEmail" class="form-label">Email:</label>
+          <label for="inputEmail" class="form-label fw-bold ms-1">Email:</label>
           <input required type="email" class="form-control" id="inputEmail">
           <div>
-            <p class="feedbackemail"></p>
+            <p class="feedbackemail ms-1"></p>
           </div>
         </div>
         <div class="col-12">
-          <label for="inputAddress" class="form-label">Adresse:</label>
+          <label for="inputAddress" class="form-label fw-bold ms-1">Adresse:</label>
           <input required type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" >
           <div>
-            <p class="feedbackaddress"></p>
+            <p class="feedbackaddress ms-1"></p>
           </div>
         </div>
         <div class="col-12">
-          <label for="inputCity" class="form-label">City:</label>
+          <label for="inputCity" class="form-label fw-bold">City:</label>
           <input required type="text" class="form-control" id="inputCity">
           <div>
-            <p class="feedbackcity"></p>
+            <p class="feedbackcity ms-1"></p>
           </div>
         </div>
         <div class="col-12">
         </div>
-        <div class="col-12">
-          <button id="submit" class="btn btn-secondary w-100">Valider la commande</button>
+        <div class="col-12 text-center">
+          <button id="submit" class="btn btn-secondary w-50 mb-4">Valider la commande</button>
         </div>
       </form>
     </div>
       
       
-      <script src="./index.js" type="text/javascript"></script>
+      <script src="./index.js"></script>
       <script>
         basket() 
         counter()

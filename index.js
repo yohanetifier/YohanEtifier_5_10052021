@@ -27,9 +27,9 @@ function getProduct() {
         description.className = "card-text";
         title.className = "card-title";
         card.className = "card";
-        cardBody.className = "card-body"
+        cardBody.className = "card-body";
         img.setAttribute("src", value[i].imageUrl);
-        img.className = "card-img-top h-100"
+        img.className = "card-img-top h-100";
         link.setAttribute("href", "productpage.html?id=" + value[i]._id);
         link.className = "btn btn-secondary";
 
@@ -138,11 +138,6 @@ let lastName = document.getElementById("inputLastName");
 let email = document.getElementById("inputEmail");
 let address = document.getElementById("inputAddress");
 let city = document.getElementById("inputCity");
-/* let storage = JSON.parse(localStorage.getItem("product"));
-let validation = document.getElementById("validation");
-let inputs = document.getElementsByTagName("input");
-let error = document.getElementById("error");
-let form = document.getElementsByTagName("form"); */
 
 // feedback
 
@@ -173,8 +168,8 @@ function basket() {
     /* Create the title of the table */
 
     let infoPurchase = document.querySelector(".nopurchase");
-    infoPurchase.classList.remove("d-flex")
-    infoPurchase.classList.add("d-none")
+    infoPurchase.classList.remove("d-flex");
+    infoPurchase.classList.add("d-none");
 
     let thTitle = document.createElement("th");
     let thPrice = document.createElement("th");
@@ -214,8 +209,8 @@ function basket() {
     header.appendChild(thPrice);
     header.appendChild(thDelete);
     tfoot.appendChild(thTotal);
-    tfoot.appendChild(quantityTotal)
-    tfoot.appendChild(optionTotal)
+    tfoot.appendChild(quantityTotal);
+    tfoot.appendChild(optionTotal);
     tfoot.appendChild(total);
 
     for (let i = 0; i < JSON.parse(localStorage.product).length; i++) {
@@ -228,8 +223,7 @@ function basket() {
       let cellOption = document.createElement("td");
       let deleteButton = document.createElement("td");
       let button = document.createElement("button");
-      let trash = document.createElement("i")
-
+      let trash = document.createElement("i");
 
       /* Add Attribute */
 
@@ -239,7 +233,7 @@ function basket() {
       cellQuantity.className = "quantity";
       deleteButton.className = "deletebutton";
       button.className = "btn btn-secondary w-75";
-      trash.className = "bi bi-trash"
+      trash.className = "bi bi-trash";
 
       /* Insertion in the DOM */
 
@@ -250,8 +244,7 @@ function basket() {
       rank.appendChild(cellPrice);
       rank.appendChild(deleteButton);
       deleteButton.appendChild(button);
-      button.appendChild(trash)
-      
+      button.appendChild(trash);
 
       /* Content of the node */
 
@@ -263,10 +256,7 @@ function basket() {
       button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
       <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
       <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-    </svg>`
-
-      
-      
+    </svg>`;
 
       /* Set up button */
 
@@ -327,32 +317,55 @@ function basket() {
 
       function checkValidity() {
         if (/^[a-zA-Z]{3,20}$/.test(chekname)) {
-          feedBack.textContent = "données correctes";
+          feedBack.textContent = "Données correctes";
+          document
+            .getElementById("inputFirstName")
+            .classList.remove("border-danger");
+          document
+            .getElementById("inputFirstName")
+            .classList.add("border-success");
           return true;
         } else {
           feedBack.textContent = "Veuillez remplir le champ au bon format";
 
+          document
+            .getElementById("inputFirstName")
+            .classList.add("border-danger");
           return false;
         }
       }
 
       function checkValidityLastName() {
         if (/^[a-zA-Z]{3,20}$/.test(checklastName)) {
-          feedbackLastName.textContent = "données correctes";
+          feedbackLastName.textContent = "Données correctes";
+          document
+            .getElementById("inputLastName")
+            .classList.remove("border-danger");
+          document
+            .getElementById("inputLastName")
+            .classList.add("border-success");
           return true;
         } else {
           feedbackLastName.textContent =
             "Veuillez remplir le champ au bon format";
+          document
+            .getElementById("inputLastName")
+            .classList.add("border-danger");
           return false;
         }
       }
 
       function checkValidityEmail() {
         if (/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})$/i.test(checkEmail)) {
-          feedbackEmail.textContent = "données correctes";
+          feedbackEmail.textContent = "Données correctes";
+          document
+            .getElementById("inputEmail")
+            .classList.remove("border-danger");
+          document.getElementById("inputEmail").classList.add("border-success");
           return true;
         } else {
           feedbackEmail.textContent = "Veuillez remplir le champ au bon format";
+          document.getElementById("inputEmail").classList.add("border-danger");
           return false;
         }
       }
@@ -360,10 +373,19 @@ function basket() {
       function checkValidityAddress() {
         if (/^[\w\s-ââéèçùïî]{5,30}$/i.test(checkAddress)) {
           feedbackAddress.textContent = "données correctes";
+          document
+            .getElementById("inputAddress")
+            .classList.remove("border-danger");
+          document
+            .getElementById("inputAddress")
+            .classList.add("border-success");
           return true;
         } else {
           feedbackAddress.textContent =
             "Veuillez remplir le champ au bon format";
+          document
+            .getElementById("inputAddress")
+            .classList.add("border-danger");
           return false;
         }
       }
@@ -371,9 +393,14 @@ function basket() {
       function checkValidityCity() {
         if (/^[\w\s-ââéèçùïî]{3,30}$/i.test(checkCity)) {
           feedbackCity.textContent = "données correctes";
+          document
+            .getElementById("inputCity")
+            .classList.remove("border-danger");
+          document.getElementById("inputCity").classList.add("border-success");
           return true;
         } else {
           feedbackCity.textContent = "Veuillez remplir le champ au bon format";
+          document.getElementById("inputCity").classList.add("border-danger");
           return false;
         }
       }
@@ -440,10 +467,14 @@ function basket() {
             "confirm.html?order=" +
             value.orderId +
             "&total=" +
-            total.textContent + "&name=" + request.contact.lastName + "&email=" + request.contact.email;
+            total.textContent +
+            "&name=" +
+            request.contact.lastName +
+            "&email=" +
+            request.contact.email;
         });
     }
-  } 
+  }
 }
 
 /* ------------------Confirm Order ------------------- */
@@ -455,8 +486,10 @@ function confirmOrder() {
     "order"
   )} de ${params.get(
     "total"
-  )} a bien été validée.\nVous recevrez un mail de confirmation à ${params.get("email")} dans quelques instants.\n Mr ${params.get("name").toUpperCase()} Orinico vous remercie de votre commande.`;
+  )} a bien été validée.\nVous recevrez un mail de confirmation à ${params.get(
+    "email"
+  )} dans quelques instants.\n Mr ${params
+    .get("name")
+    .toUpperCase()},  Orinico vous remercie de votre commande.`;
   localStorage.clear();
-  
 }
-

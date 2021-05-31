@@ -5,11 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" type="text/css" />
-   <!--  <link
-  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-  crossorigin="anonymous"> -->
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -23,7 +18,7 @@
     <!-- Header -->
 
     <div class="container">
-      <div class="row">
+      <div class="row ">
         <nav class="col navbar navbar-expand-lg bg-primary navbar-light">
           <a class="navbar-brand" href="index.html">
             <img src="./images/logo.png" height="50" />
@@ -41,9 +36,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Se connecter</a>
-              </li>
               <li class="nav-item d-flex">
                 <a class="nav-link" href="./panier.html">
                   <svg
@@ -74,7 +66,7 @@
     
 
       <!-- Product page -->
-      <div class="card mt-5 bg-primary">
+      <div class="card mt-5 bg-primary h-100">
         <div class="row g-0">
           <div class="col-md-4">
             <img src="" alt="" class="card-img-top h-100">
@@ -83,15 +75,14 @@
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="fw-bold">Choisissez vos options: </p>
               <select class="form-select" aria-label="Default select example">
-                <option selected disabled>Choisissez vos options</option>
               </select>
               <form>
-                <label for="quantity">
-                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
-                </label>
+                <label for="quantity" class="mt-4 fw-bold">Quantité: </label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" class="ms-3">
               </form>
-                <p>Prix : <span class="price"></span></p>
+                <p class="mt-4 fw-bold">Prix : <span class="price fw-normal"></span></p>
               <a class="btn btn-secondary" href="panier.html">Ajouter au panier</a>
             </div>
           </div>

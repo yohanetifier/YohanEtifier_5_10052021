@@ -42,9 +42,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#panier">Se connecter</a>
-              </li>
               <li class="nav-item d-flex">
                 <a class="nav-link" href="#connection">
                   <svg
@@ -78,11 +75,11 @@
       <div class="row">
       <h2 class="text-center mt-4">Votre panier</h2>
       <table class="table mt-5 bg-primary">
-        <thead class="header">
+        <thead class="header text-center">
         </thead>
-        <tbody class="tbody">
+        <tbody class="tbody text-center">
         </tbody>
-        <tfoot class="footer">
+        <tfoot class="footer text-center">
         </tfoot>
       </table>
     </div>
@@ -111,10 +108,10 @@
       <!-- Order Form -->
       <div class="container mt-5 ">
       <h1 class="text-center mb-4">Commande</h1> 
-      <form class="row g-3" id="validation" method="POST">
+      <form class="row g-3 bg-primary" id="validation" method="POST">
           <div class="col-md-6">
             <label for="inputFirstName" class="form-label">Prénom:</label>
-            <input required type="text" class="form-control" placeholder="First name" aria-label="First name" id="inputFirstName" >
+            <input required type="text" class="form-control" placeholder="First name" aria-label="First name" id="inputFirstName">
             <div>
               <p class="feedback"></p>
             </div>
@@ -150,7 +147,7 @@
         <div class="col-12">
         </div>
         <div class="col-12">
-          <button id="submit" class="btn btn-primary w-100">Valider la commande</button>
+          <button id="submit" class="btn btn-secondary w-100">Valider la commande</button>
         </div>
       </form>
     </div>

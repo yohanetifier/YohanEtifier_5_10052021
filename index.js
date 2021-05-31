@@ -23,7 +23,7 @@ function getProduct() {
 
         /* Set attribute */
 
-        col.className = "col-12 col-lg-4 p-0 bg-primary shadow rounded";
+        col.className = "col-lg-4 col-md-6 p-0 bg-primary shadow rounded";
         description.className = "card-text";
         title.className = "card-title";
         card.className = "card";
@@ -182,6 +182,8 @@ function basket() {
     let thOption = document.createElement("th");
     let thDelete = document.createElement("th");
     let thTotal = document.createElement("th");
+    let quantityTotal = document.createElement("td");
+    let optionTotal = document.createElement("td");
     let total = document.createElement("td");
 
     /* Add attribute to the title of the table */
@@ -191,7 +193,7 @@ function basket() {
     thQuantity.setAttribute("scope", "col");
     thOption.setAttribute("scope", "col");
     thDelete.setAttribute("scope", "col");
-    thTotal.setAttribute("colspan", "3");
+    thTotal.setAttribute("colspan", "1");
     total.className = "total";
 
     /* Add textContent to the title */
@@ -212,6 +214,8 @@ function basket() {
     header.appendChild(thPrice);
     header.appendChild(thDelete);
     tfoot.appendChild(thTotal);
+    tfoot.appendChild(quantityTotal)
+    tfoot.appendChild(optionTotal)
     tfoot.appendChild(total);
 
     for (let i = 0; i < JSON.parse(localStorage.product).length; i++) {
@@ -256,8 +260,7 @@ function basket() {
       cellPrice.textContent = list[i].price;
       cellOption.textContent = list[i].option;
       /* button.textContent = "Supprimer l'article"; */
-      button.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+      button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
       <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
       <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
     </svg>`
@@ -291,7 +294,7 @@ function basket() {
         let priceInLocalStorageConvertInNum = parseInt(priceInLocalStorage);
         totalPrice.push(priceInLocalStorageConvertInNum);
       }
-      let total = document.querySelector(".total");
+      /* let total = document.querySelector(".total"); */
       total.textContent = totalPrice.reduce((a, b) => a + b);
       total.textContent += "€";
     }
@@ -437,7 +440,7 @@ function basket() {
             "confirm.html?order=" +
             value.orderId +
             "&total=" +
-            total.textContent;
+            total.textContent + "&name=" + request.contact.lastName + "&email=" + request.contact.email;
         });
     }
   } 
@@ -452,114 +455,8 @@ function confirmOrder() {
     "order"
   )} de ${params.get(
     "total"
-  )} a bien été validée.\nVous recevrez un mail de confirmation dans quelques instants.\n Orinico vous remercie de votre commande.`;
+  )} a bien été validée.\nVous recevrez un mail de confirmation à ${params.get("email")} dans quelques instants.\n Mr ${params.get("name").toUpperCase()} Orinico vous remercie de votre commande.`;
   localStorage.clear();
+  
 }
 
-/*    Send data to server   */
-
-/* let submit = document.getElementById("submit");
-    let firstName = document.getElementById("inputFirstName");
-    let lastName = document.getElementById("inputLastName");
-    let email = document.getElementById("inputEmail");
-    let address = document.getElementById("inputAddress");
-    let city = document.getElementById("inputCity");
-    let storage = JSON.parse(localStorage.getItem("product"));
-    let validation = document.getElementById("validation")
-    let inputs = document.getElementsByTagName("input")
-    let error = document.getElementById("error") 
-    let form = document.getElementsByTagName("form") */
-
-/* document.addEventListener("input", function () {
-      const contact = {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        address: address.value,
-        city: city.value,
-        email: email.value,
-      };
-
-      localStorage.setItem("contact", JSON.stringify(contact));
-      const chekname = JSON.parse(localStorage.getItem("contact")).firstName;
-      const checklastName = JSON.parse(
-        localStorage.getItem("contact")
-      ).lastName;
-      const checkEmail = JSON.parse(localStorage.getItem("contact")).email;
-      const checkCity = JSON.parse(localStorage.getItem("contact")).city;
-      const checkAddress = JSON.parse(localStorage.getItem("contact")).address;
-
-      function checkValidity() {
-        if (/^[a-zA-Z]{3,20}$/.test(chekname)) {
-          feedBack.textContent = "données correctes";
-          return true;
-        } else {
-          feedBack.textContent = "Veuillez remplir le champ au bon format";
-          return false;
-        }
-      }
-
-      function checkValidityLastName() {
-        if (/^[a-zA-Z]{3,20}$/.test(checklastName)) {
-          feedbackLastName.textContent = "données correctes";
-          return true;
-        } else {
-          feedbackLastName.textContent =
-            "Veuillez remplir le champ au bon format";
-          return false;
-        }
-      }
-
-      function checkValidityEmail() {
-        if (/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})$/i.test(checkEmail)) {
-          feedbackEmail.textContent = "données correctes";
-          return true;
-        } else {
-          feedbackEmail.textContent = "Veuillez remplir le champ au bon format";
-          return false;
-        }
-      }
-
-      function checkValidityAddress() {
-        if (/^[\w\s-ââéèçùïî]{5,30}$/i.test(checkAddress)) {
-          feedbackAddress.textContent = "données correctes";
-          return true;
-        } else {
-          feedbackAddress.textContent =
-            "Veuillez remplir le champ au bon format";
-          return false;
-        }
-      }
-
-      function checkValidityCity() {
-        if (/^[\w\s-ââéèçùïî]{5,30}$/i.test(checkCity)) {
-          feedbackCity.textContent = "données correctes";
-          return true;
-        } else {
-          feedbackCity.textContent = "Veuillez remplir le champ au bon format";
-          return false;
-        }
-      }
-
-
-      if (
-        !checkValidity() ||
-        !checkValidityLastName() ||
-        !checkValidityEmail() ||
-        !checkValidityAddress() ||
-        !checkValidityCity()
-      ) {
-        localStorage.removeItem("contact");
-      } else {
-        localStorage.setItem("contact", JSON.stringify(contact));
-      }
-    }); */
-
-/* Faire en sorte que les valeurs du formulaires restent */
-
-/* firstName.value = JSON.parse(localStorage.getItem("contact")).firstName;
-    lastName.value = JSON.parse(localStorage.getItem("contact")).lastName;
-    address.value = JSON.parse(localStorage.getItem("contact")).address;
-    city.value = JSON.parse(localStorage.getItem("contact")).city;
-    email.value = JSON.parse(localStorage.getItem("contact")).email;
- */
-/* Send data */

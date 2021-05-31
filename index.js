@@ -20,6 +20,9 @@ function getProduct() {
         let description = document.createElement("p");
         let link = document.createElement("a");
         let container = document.querySelector(".product");
+        let icons = `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg>`
 
         /* Set attribute */
 
@@ -46,6 +49,7 @@ function getProduct() {
         cardBody.appendChild(title);
         cardBody.appendChild(description);
         cardBody.appendChild(link);
+        link.innerHTML = icons + "pour plus de détails"
       })
       .catch(function (err) {
         console.log("une erreur est survenue");
@@ -82,6 +86,11 @@ function productPage() {
       price.textContent = `${value.price}€`;
       quantity.addEventListener("input", function (e) {
         price.textContent = value.price * e.target.value + "€";
+        if (e.target.value > 1){
+          document.getElementById("labelforquantity").textContent = "Quantités:"
+        }else{
+          document.getElementById("labelforquantity").textContent = "Quantité:"
+        }
       });
       for (let i = 0; i < value.lenses.length; i++) {
         let option = document.createElement("option");
@@ -89,6 +98,8 @@ function productPage() {
         option.setAttribute("value", value.lenses[i]);
         option.textContent = value.lenses[i];
       }
+
+
 
       /* --Add to basket-- */
 
@@ -193,13 +204,23 @@ function basket() {
 
     /* Add textContent to the title */
 
-    thTitle.textContent = "Libellé";
+    if (JSON.parse(localStorage.getItem("product")).length > 1){
+    thTitle.textContent = "Libellés";
+    thPrice.textContent = "Prix";
+    thQuantity.textContent = "Quantités";
+    thOption.textContent = "Options";
+    thDelete.textContent = "Supprimer";
+    thTotal.textContent = "Total";
+    }else {
+      thTitle.textContent = "Libellé";
     thPrice.textContent = "Prix";
     thQuantity.textContent = "Quantité";
     thOption.textContent = "Option";
     thDelete.textContent = "Supprimer";
     thTotal.textContent = "Total";
     infoPurchase.textContent = "";
+    }
+    
 
     /* Insertion in the dom */
 

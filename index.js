@@ -426,7 +426,7 @@ function basket() {
         }
       }
 
-      if (
+      /* if (
         !checkValidity() ||
         !checkValidityLastName() ||
         !checkValidityEmail() ||
@@ -436,7 +436,13 @@ function basket() {
         localStorage.removeItem("contact");
       } else {
         localStorage.setItem("contact", JSON.stringify(infoClient));
-      }
+      } */
+
+      checkValidity()
+      checkValidityLastName()
+      checkValidityEmail()
+      checkValidityAddress()
+      checkValidityCity()
     });
 
     /* Faire en sorte que les valeurs du formulaires restent */
